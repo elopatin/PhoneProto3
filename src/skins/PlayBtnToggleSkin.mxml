@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("spark.components.ToggleButton")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabledAndSelected" />
+		<s:State name="downAndSelected" />
+		<s:State name="overAndSelected" />
+		<s:State name="upAndSelected" />
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<!-- SkinParts
+	name=iconDisplay, type=spark.primitives.BitmapImage, required=false
+	name=labelDisplay, type=spark.core.IDisplayText, required=false
+	-->
+	
+	<s:Group id="btnGroup">
+		<s:BitmapImage id="iconDisplay" alpha.down="0.7" horizontalCenter="0" verticalCenter="0"/>
+		<s:BitmapImage source="@Embed('assets/visit/playButtonPlayIcon.png')" visible.upAndSelected="false" visible.downAndSelected="false" visible.down="false" verticalCenter="0" horizontalCenter="0"/>
+		<s:BitmapImage source="@Embed('assets/visit/playButtonPauseIcon.png')" visible.up="false" visible.downAndSelected="true" verticalCenter="0" horizontalCenter="0"/>
+	</s:Group>
+	
+</s:Skin>

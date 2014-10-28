@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:parsley="http://www.spicefactory.org/parsley"
+		title="FOLLOW-UP CARE"
+		backgroundColor="#2f3942"
+		viewActivate="view1_viewActivateHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			
+			import model.WallDataIPhone;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			[Inject]
+			[Bindable]
+			public var wallData:WallDataIPhone;
+			
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				FadeInBackground.play();
+				
+				wallData.wallCounter = 2;
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				navigator.popToFirstView();
+			}
+			
+			protected function pastVisitsSlider_clickHandler(event:MouseEvent):void
+			{
+				if (pastVisitsSlider.bottom == -872)
+				{
+					raisePastVisits.play();
+					GuideBtnSequencePrevVizBtn.play();
+				}
+				if (pastVisitsSlider.bottom == -48)
+				{
+					lowerPastVisits.play();
+				}
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// lowerPastVisits.play();
+				// above performs poorly..
+				navigator.pushView(VisitPlayBackView);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<parsley:Configure/>
+		
+		<s:Parallel id="GuideBtnSequencePlayBtn">
+			<s:Parallel target="{}" repeatCount="3" startDelay="2000">
+				<s:Fade alphaFrom="1" alphaTo="0.7" duration="600"/>
+				<s:Fade alphaFrom="0.7" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>	
+		
+		<s:Parallel id="FadeInBackground">
+			<s:Parallel target="{backgroundImage}" startDelay="300">
+				<s:Fade alphaFrom="0" alphaTo="1" duration="500"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="GuideBtnSequencePrevVizBtn">
+			<s:Parallel target="{previousVisitBtn}" repeatCount="3" startDelay="2000">
+				<s:Fade alphaFrom="1" alphaTo="0.6" duration="600"/>
+				<s:Fade alphaFrom="0.6" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="raisePastVisits">
+			<s:Animate target="{pastVisitsSlider}" duration="250">
+				<s:SimpleMotionPath property="bottom" valueFrom="-872" valueTo="-48"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="lowerPastVisits">
+			<s:Animate target="{pastVisitsSlider}" duration="250">
+				<s:SimpleMotionPath property="bottom" valueFrom="-48" valueTo="-872"/>
+			</s:Animate>
+		</s:Parallel>
+		
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="assets/icons/genericBackButton.png" click="button1_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:actionContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="@Embed('assets/icons/recordNewButtons.png')"/>
+	</s:actionContent>
+	
+	<s:BitmapImage id="backgroundImage" top="0" horizontalCenter="0" source="@Embed('/assets/iPhoneWallBackground.png')"
+				   visible="false"/>
+	
+	<s:Scroller height="900">
+		<s:VGroup gap="0">
+			<s:BitmapImage source="@Embed('assets/visit/todaysVisit.png')"/>
+			<s:BitmapImage source="@Embed('assets/visit/rehab3Visit.png')"/>
+			<s:BitmapImage source="@Embed('assets/visit/rehab2Visit.png')"/>
+		</s:VGroup>
+	</s:Scroller>
+	
+	<s:VGroup id="pastVisitsSlider" width="100%" bottom="-872" gap="0">
+		<s:Group click="pastVisitsSlider_clickHandler(event)" width="100%">
+			<s:BitmapImage source="@Embed('assets/visit/pastVisitTopper.png')"/>
+		</s:Group>
+		<s:Group>
+			<s:BitmapImage source="@Embed('assets/visit/pastVisitsTwoNoTopper.png')"/>
+			<s:Button id="previousVisitBtn" y="124" horizontalCenter="3" icon="@Embed('assets/visit/specialistButton.png')"
+					  skinClass="skins.PlainButtonSkin"
+					  click="button2_clickHandler(event)"/>
+		</s:Group>
+	</s:VGroup>
+	
+</s:View>

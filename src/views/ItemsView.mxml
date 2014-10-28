@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:c="components.*"
+		title="Items"
+		viewActivate="view1_viewActivateHandler(event)"
+		viewDeactivate="view1_viewDeactivateHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected function backBtn_clickHandler(event:MouseEvent):void
+			{
+				navigator.popView();
+			}
+			
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				GuideBtnSequence.play();
+			}
+			
+			protected function postToReg_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(RegistryView);
+			}
+			
+			protected function ItemBtn1_clickHandler(event:MouseEvent):void
+			{
+				PhonePrototype2.registryOverlay_1.visible = true;
+				openMedRegOverlay.play();
+				// medRegOverlay.includeInLayout = true;
+				// above was causing a pushView transition issue when moving from VA to ItemsView
+			}
+			
+			protected function view1_viewDeactivateHandler(event:ViewNavigatorEvent):void
+			{
+				medRegOverlay.includeInLayout = false;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+
+		<s:Parallel id="GuideBtnSequence">
+			<s:Parallel target="{ItemBtn1}" repeatCount="3" startDelay="500">
+				<s:Fade alphaFrom="1" alphaTo="0.2" duration="600"/>
+				<s:Fade alphaFrom="0.2" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="openMedRegOverlay">
+			<s:Parallel target="{PhonePrototype2.registryOverlay_1}">
+				<s:Fade alphaFrom="0" alphaTo="1" duration="250"/>
+			</s:Parallel>
+		</s:Parallel>
+	
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button id="backBtn" label="Back" click="backBtn_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:Scroller width="100%" height="100%" top="110" horizontalCenter="0"
+				scrollSnappingMode="leadingEdge" horizontalScrollPolicy="off">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="10">
+			<s:Group width="100%">
+				<s:BitmapImage source="@Embed('/assets/itemPlaceholder.png')" horizontalCenter="0"/>
+				<s:Button id="ItemBtn1" width="150" label="Select" verticalCenter="0" horizontalCenter="200"
+						  click="ItemBtn1_clickHandler(event)"/>
+			</s:Group>
+			<s:Group width="100%">
+				<s:BitmapImage source="@Embed('/assets/itemPlaceholder.png')" horizontalCenter="0"/>
+				<s:Button id="ItemBtn2" width="150" label="Select" verticalCenter="0" horizontalCenter="200"/>
+			</s:Group>
+			<s:Group width="100%">
+				<s:BitmapImage source="@Embed('/assets/itemPlaceholder.png')" horizontalCenter="0"/>
+				<s:Button id="ItemBtn3" width="150" label="Select" verticalCenter="0" horizontalCenter="200"/>
+			</s:Group>
+			<s:Group width="100%">
+				<s:BitmapImage source="@Embed('/assets/itemPlaceholder.png')" horizontalCenter="0"/>
+				<s:Button id="ItemBtn4" width="150" label="Select" verticalCenter="0" horizontalCenter="200"/>
+			</s:Group>
+			<s:Group width="100%" visible="false">
+				<s:BitmapImage source="@Embed('/assets/itemPlaceholder.png')" horizontalCenter="0"/>
+				<s:Button id="ItemBtn5" width="150" label="Select" verticalCenter="0" horizontalCenter="200"/>
+			</s:Group>
+		</s:VGroup>
+	</s:Scroller>
+	
+	<s:Group top="0" verticalCenter="0" id="medRegOverlay" visible="false">
+		<c:MedicationRegistryOverlay/>
+		<s:Button id="postToReg" label="Add Medication to Registry" 
+				  horizontalCenter="0" verticalCenter="100"
+				  click="postToReg_clickHandler(event)"/>
+	</s:Group>
+	
+</s:View>

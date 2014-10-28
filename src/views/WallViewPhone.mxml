@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:parsley="http://www.spicefactory.org/parsley"
+		xmlns:c="components.*"
+		title="WallViewPhone"
+		actionBarVisible="false"
+		backgroundColor="#2f3942"
+		destructionPolicy="never"
+		viewDeactivate="view1_viewDeactivateHandler(event)"
+		viewActivate="view1_viewActivateHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import components.CareTeamScrollerComponent;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import model.WallDataIPhone;
+			
+			import spark.events.ViewNavigatorEvent;	
+			
+			[Inject]
+			[Bindable]
+			public var wallData:WallDataIPhone;
+			
+/* 			static public function get wallCustComp_1():WallCustomComponent
+			{
+				return FlexGlobals.topLevelApplication.wallCustComp;
+			} */
+			
+			protected function view1_viewDeactivateHandler(event:ViewNavigatorEvent):void
+			{
+				wallCustComp.CTScrollerComponent.visible = false;
+			}
+			
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				wallCustComp.CTScrollerComponent.visible = true;
+				
+				wallData.wallCounter = 1;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<parsley:Configure/>
+	
+	</fx:Declarations>
+	
+	<c:WallCustomComponent id="wallCustComp" top="0" horizontalCenter="0"/>
+	
+	<c:LowerNavComponentPhone id="lowerNav" width="100%" bottom="0"/>
+
+</s:View>

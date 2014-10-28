@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="238" height="136">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function theBtn_clickHandler(event:MouseEvent):void
+			{
+				const state:String = currentState;
+				if ( state == 'off' ) {
+					currentState='on';
+				}
+				if ( state == 'on' ) {
+					currentState='off';
+				}				
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="off"/>
+		<s:State name="on"/>
+	</s:states>
+	
+	<s:Group id="theBtn" click="theBtn_clickHandler(event)">
+		<s:BitmapImage source="@Embed('assets/visit/playButtonBackground.png')"/>
+		<s:BitmapImage source="@Embed('assets/visit/playButtonPauseIcon.png')" 
+					   visible.off="false"/>
+		<s:BitmapImage source="@Embed('assets/visit/playButtonPlayIcon.png')" 
+					   visible.on="false"/>
+	</s:Group>
+	
+</s:Group>

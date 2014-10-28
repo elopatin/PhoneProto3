@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:c="components.*"
+		 width="100%" height="100%"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.utils.Timer;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import spark.components.Label;
+			import spark.events.ViewNavigatorEvent;
+			
+			import views.AlertsView;
+			import views.MedicationsView;
+			import views.RegistryView;
+			
+			static public function get CTScrollerComponent_1():CareTeamScrollerComponent
+			{
+				return WallCustomComponent.CTScrollerComponent_1;
+			}
+
+			[Bindable]
+			private var titleName : String = new String;
+			
+			protected function loisBtn_clickHandler(event:MouseEvent):void
+			{
+				// currentState = "senior";
+				moveToSenior.play();
+				titleName = "LOIS";
+				loisBtn.visible = false;
+				contactsBtn.visible = false;
+				wallBtnSlideRightForSenior.play();
+			}
+			
+			protected function contactsBtn_clickHandler(event:MouseEvent):void
+			{
+				// currentState = 'careteam';
+				moveToCareteam.play();
+				titleName = "CARE TEAM";
+				loisBtn.visible = false;
+				contactsBtn.visible = false;
+				wallBtnSlideLeftForCareTeam.play();
+			}
+			
+			protected function wallBtn_clickHandler(event:MouseEvent):void
+			{
+				// currentState = 'wall';
+				if (mothership.horizontalCenter == 550)
+				{
+					returnFromSenior.play();
+					titleName = "WALL";
+					wallBtnSlideBackFromSenior.play();
+					wallBtn.visible = false;
+					loisBtn.visible = true;
+					contactsBtn.visible = true;
+				}
+				
+				if (mothership.horizontalCenter == -550)
+				{
+					returnFromCareteam.play();
+					titleName = "WALL";
+					wallBtnSlideBackFromCareTeam.play();
+					wallBtn.visible = false;
+					loisBtn.visible = true;
+					contactsBtn.visible = true;
+				}
+			}
+			
+			protected function mothership_gestureSwipeHandler(event:TransformGestureEvent):void
+			{
+				// Swipe was to the right from wall, to senior
+				if (event.offsetX == 1 && mothership.horizontalCenter == 0)
+				{
+					moveToSenior.play();
+					titleName = "LOIS";
+					loisBtn.visible = false;
+					contactsBtn.visible = false;
+					wallBtnSlideRightForSenior.play();
+				}
+				
+				// Swipe was to the left from senior, return to wall
+				if (event.offsetX == -1 && mothership.horizontalCenter == 550)
+				{
+					returnFromSenior.play();
+					titleName = "WALL";
+					loisBtn.visible = true;
+					contactsBtn.visible = true;
+					wallBtn.visible = false;
+					wallBtnSlideBackFromSenior.play();
+				}
+				
+				// Swipe was to the left from wall, to care team
+				if (event.offsetX == -1 && mothership.horizontalCenter == 0)
+				{
+					moveToCareteam.play();
+					titleName = "CARE TEAM";
+					loisBtn.visible = false;
+					contactsBtn.visible = false;
+					wallBtnSlideLeftForCareTeam.play();
+				}
+				
+				// Swipe was to the right from care team, return to wall
+				if (event.offsetX == 1 && mothership.horizontalCenter == -550)
+				{
+					returnFromCareteam.play();
+					titleName = "WALL";
+					loisBtn.visible = true;
+					contactsBtn.visible = true;
+					wallBtn.visible = false;
+					wallBtnSlideBackFromCareTeam.play();
+				}
+
+			}
+			
+			private var insertTimer : Timer = new Timer(1500, 1);
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				if (mothership.horizontalCenter == 0)
+				{
+					titleName = "WALL";
+				}
+				
+				insertTimer.addEventListener(TimerEvent.TIMER, handleInsertTimer);
+				insertTimer.start();
+				
+			}
+			
+			// inserts top item into Wall
+			protected function handleInsertTimer(event:TimerEvent):void
+			{
+				TopItemInsert.play();
+				TopWallItem.includeInLayout = true;
+				insertTimer.stop();
+			}
+			
+			protected function secondaryNavMedBtn_clickHandler(event:MouseEvent):void
+			{
+				FlexGlobals.topLevelApplication.navigator.pushView(MedicationsView);
+			}
+			
+			protected function secondaryNavRegBtn_clickHandler(event:MouseEvent):void
+			{
+				FlexGlobals.topLevelApplication.navigator.pushView(RegistryView);
+			}
+			
+			protected function secondaryNavAlertBtn_clickHandler(event:MouseEvent):void
+			{
+				FlexGlobals.topLevelApplication.navigator.pushView(AlertsView);
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		
+		<s:Parallel id="TopItemInsert">
+			<s:Parallel target="{TopWallItem}">
+				<s:Fade duration="800" alphaFrom="0" alphaTo="1"/>
+			</s:Parallel>
+		</s:Parallel>
+
+		<s:Parallel id="moveToSenior">
+			<s:Animate target="{mothership}" duration="250">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="0" valueTo="550"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="moveToCareteam">
+			<s:Animate target="{mothership}" duration="250">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="0" valueTo="-550"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="returnFromSenior">
+			<s:Animate target="{mothership}" duration="250">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="550" valueTo="0"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="returnFromCareteam">
+			<s:Animate target="{mothership}" duration="250">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="-550" valueTo="0"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="wallBtnSlideRightForSenior">
+			<s:Animate duration="250" target="{wallBtn}">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="0" valueTo="260"/>
+			</s:Animate>
+			<s:Parallel target="{wallBtn}">
+				<s:Fade duration="250" alphaFrom="0" alphaTo="1"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="wallBtnSlideBackFromSenior">
+			<s:Parallel>
+				<s:Animate target="{wallBtn}">
+					<s:SimpleMotionPath property="horizontalCenter" valueFrom="260" valueTo="0"/>
+				</s:Animate>
+			</s:Parallel>
+<!--			<s:Parallel target="{wallBtn}">
+				<s:Fade duration="100" alphaFrom="1" alphaTo="0"/>
+			</s:Parallel>-->
+		</s:Parallel>
+		
+		<s:Parallel id="wallBtnSlideLeftForCareTeam">
+			<s:Animate duration="250" target="{wallBtn}">
+				<s:SimpleMotionPath property="horizontalCenter" valueFrom="0" valueTo="-260"/>
+			</s:Animate>
+			<s:Parallel target="{wallBtn}">
+				<s:Fade duration="250" alphaFrom="0" alphaTo="1"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="wallBtnSlideBackFromCareTeam">
+			<s:Parallel>
+				<s:Animate target="{wallBtn}">
+					<s:SimpleMotionPath property="horizontalCenter" valueFrom="-260" valueTo="0"/>
+				</s:Animate>
+			</s:Parallel>
+<!--			<s:Parallel target="{wallBtn}">
+				<s:Fade duration="100" alphaFrom="1" alphaTo="0"/>
+			</s:Parallel>-->
+		</s:Parallel>
+		
+		
+	</fx:Declarations>
+	
+<!--	<s:states>
+		<s:State name="wall"/>
+		<s:State name="senior"/>
+		<s:State name="careteam"/>
+	</s:states>
+	-->
+	
+	
+	
+	<s:HGroup top="88" gap="0" id="mothership" horizontalCenter="0"
+			  gestureSwipe="mothership_gestureSwipeHandler(event)">
+
+		<s:VGroup id="seniorScroller">
+			<s:Scroller height="900"
+					horizontalScrollPolicy="off">
+			<s:VGroup width="100%" height="100%" horizontalAlign="left" gap="0">
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorHeaderBlank.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorLockItem.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorHeaderBlank.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorPHRNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorRegistryNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorApptsNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/senior/seniorLegalNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+				</s:Group>
+			</s:VGroup>	
+		</s:Scroller>
+		</s:VGroup>
+		
+		<s:Group>
+			<s:BitmapImage top="0" horizontalCenter="0" source="@Embed('/assets/iPhoneWallBackground.png')"/>
+		<s:VGroup paddingTop="5">
+			<s:Scroller id="wallScroller" width="100%" height="900"
+						horizontalScrollPolicy="off" scrollSnappingMode="leadingEdge">
+				<s:VGroup gap="20" horizontalAlign="center">
+					<s:VGroup>
+						<s:BitmapImage id="TopWallItem" includeInLayout="false" 
+									   source="@Embed('assets/entry3_640_00.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/entry3_640_01.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/entry3_640_02.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/entry3_640_03.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/entry3_640_04.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/entry3_640_05.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage alpha="0" source="@Embed('assets/entry3_640_04.png')"/>
+					</s:VGroup>
+				</s:VGroup>
+			</s:Scroller>
+		</s:VGroup>
+		</s:Group>
+		
+		<c:CareTeamScrollerComponent id="CTScrollerComponent"/>
+<!--		<s:VGroup>
+			<s:Scroller id="careteamScroller" height="900"
+						horizontalScrollPolicy="off">
+				<s:VGroup width="100%" height="100%" horizontalAlign="right" gap="0">
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamTopTemp.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamAmber.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamBecky.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamCharles.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamOwen.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage source="@Embed('assets/careteamFloyd.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
+					</s:Group>
+					<s:Group width="100%">
+						<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
+					</s:Group>
+				</s:VGroup>	
+			</s:Scroller>
+		</s:VGroup>-->
+
+	</s:HGroup>
+	
+<!--	<s:Group id="secondaryNav" width="640" top="82" horizontalCenter="0">
+		<s:HGroup horizontalCenter="318" gap="1">
+			<s:HGroup gap="1" paddingTop="0">
+				<s:Button id="secondaryNavMedBtn" icon="assets/icons/BtnMedical2_icon.png"
+						  skinClass="skins.secondaryNavButtonSkin"
+						  click="secondaryNavMedBtn_clickHandler(event)"/>
+				<s:Button id="secondaryNavRegBtn" icon="assets/icons/BtnReg2_icon.png"
+						  skinClass="skins.secondaryNavButtonSkin"
+						  click="secondaryNavRegBtn_clickHandler(event)"/>
+				<s:Button id="secondaryNavAlertBtn" icon="assets/icons/BtnAlerts2_icon.png"
+						  skinClass="skins.secondaryNavButtonSkin"
+						  click="secondaryNavAlertBtn_clickHandler(event)"/>
+			</s:HGroup>
+			<s:Group>
+				<s:BitmapImage x="0" top="7" source="@Embed('assets/careteamOverhead.png')"/>
+			</s:Group>
+		</s:HGroup>
+	</s:Group>-->
+	
+	
+	<s:Group id="upperWallNav" width="640" top="0" horizontalCenter="0">
+			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
+			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/loisButtonLight.png"
+					  id="loisBtn" click="loisBtn_clickHandler(event)"/>
+			<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
+					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>
+			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/wallButtonLight.png"
+					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
+			<s:Label top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
+		</s:Group>
+	</s:Group>

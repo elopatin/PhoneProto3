@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 width="100%" height="100%">
+	
+	
+	<fx:Declarations>
+
+		
+	
+	</fx:Declarations>
+	
+	
+	<s:VGroup>
+		<s:Scroller id="careteamScroller" height="900"
+					horizontalScrollPolicy="off">
+			<s:VGroup width="100%" height="100%" horizontalAlign="right" gap="0">
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/patients.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/ctLoisAmberNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/medicalTeam.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/ctAliceNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/ctCharlesNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/careteamNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/ctOwenNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage source="@Embed('assets/careteam/ctFloydNew.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
+				</s:Group>
+				<s:Group width="100%">
+					<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
+				</s:Group>
+			</s:VGroup>	
+		</s:Scroller>
+	</s:VGroup>
+	
+</s:Group>

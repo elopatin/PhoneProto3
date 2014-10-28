@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		title="Drive Medical Walker"
+		viewActivate="view1_viewActivateHandler(event)">
+	
+	<!-- viewActivate="view1_viewActivateHandler(event)" -->
+	
+	<fx:Script>
+		<![CDATA[
+			import model.WallDataIPhone;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				navigator.popView();
+			}
+									
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				navigator.popToFirstView();
+			}
+			
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				GuideBtnSequencePlayBtn.play();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:Parallel id="GuideBtnSequencePlayBtn">
+			<s:Parallel target="{addForReal}" repeatCount="3" startDelay="2000">
+				<s:Fade alphaFrom="1" alphaTo="0.7" duration="600"/>
+				<s:Fade alphaFrom="0.7" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>		
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="assets/icons/genericBackButton.png" click="button1_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:actionContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="@Embed('assets/shareIcon.png')"/>
+	</s:actionContent>
+	
+	<s:Scroller width="100%" height="100%" horizontalCenter="0"
+				horizontalScrollPolicy="off">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center" gap="10">
+			<s:Group width="100%">
+				<s:BitmapImage source="@Embed('assets/walkerPageTall.png')" horizontalCenter="0"/>
+				<s:HGroup verticalCenter="370" horizontalCenter="0" gap="20">
+					<s:Button id="addToGifts" skinClass="skins.PlainButtonSkin" icon="assets/addToGiftListButton.png"
+							  click="button2_clickHandler(event)"/>
+					<s:Button id="addForReal" skinClass="skins.PlainButtonSkin" icon="assets/addToCartButton.png"
+							  click="button2_clickHandler(event)"/>
+				</s:HGroup>
+
+			</s:Group>
+		</s:VGroup>	
+	</s:Scroller>
+	
+</s:View>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:c="components.*"
+		 width="640" height="286"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import org.osmf.events.TimeEvent;
+			import org.osmf.media.MediaPlayer;
+		
+			
+			protected function WaltzSequence_completeHandler(event:TimeEvent):void
+			{
+				fakeToggleBtn.currentState = 'off';
+			}
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				GuideBtnSequencePlayBtn.play();
+			}
+			
+/* 			protected function toggleBtn_clickHandler(event:MouseEvent):void
+			{
+				if (toggleBtn.selected == true)
+				{
+					WaltzSequence.play();
+					// MoveSoundSlider.play();
+				}
+				
+				if (toggleBtn.selected == false)
+				{
+					WaltzSequence.pause();
+					// MoveSoundSlider.pause();
+				}
+				
+			} */
+			
+			protected function resetBtn_clickHandler(event:MouseEvent):void
+			{
+				if (WaltzSequence.playing == false)
+				{
+					WaltzSequence.stop();
+				}
+				if (WaltzSequence.playing == true)
+				{
+					WaltzSequence.stop();
+					WaltzSequence.play();
+				}
+			}
+			
+			private function formatTime(item:Date):String {
+				return timeFormatter.format(item);
+			}
+			
+			private function videoDisplay_playheadUpdate(event:TimeEvent):void {
+				var pT:Number = WaltzSequence.currentTime;
+				var tT:Number = WaltzSequence.duration;
+				
+				/* Convert currentTime and Duration from seconds to milliseconds and create new Date objects. */
+				var pTimeMS:Date = new Date(pT * 1000);
+				var tTimeMS:Date = new Date(tT * 1000);
+				
+				timeDisplay.text = formatTime(pTimeMS);
+				totalTimeDisplay.text = formatTime(tTimeMS);
+				
+			}
+			
+			protected function fakeToggleBtn_clickHandler(event:MouseEvent):void
+			{
+				if (fakeToggleBtn.currentState == 'on')
+				{
+					WaltzSequence.play();
+				}
+				if (fakeToggleBtn.currentState == 'off')
+				{
+					WaltzSequence.pause();
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+
+		<s:Parallel id="GuideBtnSequencePlayBtn">
+			<s:Parallel target="{fakeToggleBtn}" repeatCount="3" startDelay="2400">
+				<s:Fade alphaFrom="1" alphaTo="0.7" duration="600"/>
+				<s:Fade alphaFrom="0.7" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>	
+		
+<!--		<s:Parallel id="GuideBtnSequenceItemsBtn">
+			<s:Parallel target="{}" repeatCount="3" startDelay="500">
+				<s:Fade alphaFrom="1" alphaTo="0.2" duration="600"/>
+				<s:Fade alphaFrom="0.2" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="MoveSoundSlider">
+				<s:Animate target="{soundSlider}" duration="120000">
+					<s:SimpleMotionPath property="horizontalCenter" valueFrom="21" valueTo="394"/>
+				</s:Animate>
+		</s:Parallel>-->
+		
+		<s:DateTimeFormatter id="timeFormatter" dateTimePattern="mm:ss"/>
+		
+	</fx:Declarations>
+	
+	<s:Group>
+		<s:VideoDisplay id="WaltzSequence" source="assets/media/Fong.flv"
+						currentTimeChange="videoDisplay_playheadUpdate(event)"
+						includeInLayout="false" visible="false"
+						autoPlay="false"
+						complete="WaltzSequence_completeHandler(event)"/>
+	</s:Group>
+	
+	<s:BitmapImage source="@Embed('assets/visit/backF2.png')" verticalCenter="0" horizontalCenter="0"/>
+	
+	<s:HSlider id="trySlider" value="{WaltzSequence.currentTime}" minimum="0" maximum="{WaltzSequence.duration}" 
+			   width="600" verticalCenter="61" horizontalCenter="82"
+			   skinClass="skins.HsliderSkin"/>
+	
+
+	
+<!--	<s:BitmapImage id="soundSlider" source="@Embed('assets/visit/sliderF2.png')" verticalCenter="61" horizontalCenter="21"/>
+-->	
+	<s:BitmapImage source="@Embed('assets/visit/frontF2.png')" verticalCenter="0" horizontalCenter="0"/>
+	
+	
+	<s:Label id="timeDisplay" color="#797d80" fontSize="22" verticalCenter="62" horizontalCenter="-251" width="56" height="22"/>
+	<s:Label id="totalTimeDisplay" color="#797d80" fontSize="22" verticalCenter="62" horizontalCenter="252" width="56" height="22"/>
+	
+<!--	<s:ToggleButton id="toggleBtn" skinClass="skins.PlayBtnToggleSkin" icon="assets/visit/playButtonBackground.png"
+					horizontalCenter="-179" verticalCenter="-52"
+					click="toggleBtn_clickHandler(event)"/>-->
+	
+	<c:FakeToggle id="fakeToggleBtn" horizontalCenter="-179" verticalCenter="-52"
+				  click="fakeToggleBtn_clickHandler(event)"/>
+	
+	<s:Button id="resetBtn" skinClass="skins.PlainButtonSkin" icon="assets/visit/replay30.png" 
+			  horizontalCenter="220" verticalCenter="-52"
+			  click="resetBtn_clickHandler(event)"/>
+	
+		
+</s:Group>

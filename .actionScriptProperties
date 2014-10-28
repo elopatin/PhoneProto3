@@ -28,6 +28,8 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/mobiletheme_ios/bin/mobiletheme_ios.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="linked-swc/parsley-core-3.0.0"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

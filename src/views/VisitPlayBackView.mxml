@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:parsley="http://www.spicefactory.org/parsley"
+		xmlns:c="components.*"
+		backgroundColor="#282828"
+		title="Dr. Fong"
+		viewActivate="view1_viewActivateHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			
+			import model.WallDataIPhone;
+			
+			import spark.effects.Move;
+			import spark.events.ViewNavigatorEvent;
+			
+			[Inject]
+			[Bindable]
+			public var wallData:WallDataIPhone;
+			
+/* 			public static function get itemsSlider_1():ItemsSliderComponent
+			{
+				return FlexGlobals.topLevelApplication.itemsSlider;
+			}  */
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				if (wallData.wallCounter == 1)
+				{
+					navigator.popToFirstView();
+				}
+				if (wallData.wallCounter == 2)
+				{
+					navigator.popView();
+				}
+				
+			}
+			
+			
+			protected function shareBtn_clickHandler(event:MouseEvent):void
+			{
+				// lowerItemsSlider.play();
+				// fadeShareButton.play();
+				// navigator.pushView(RegistryView);
+			}
+			
+			protected function itemsBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				highlighterGrp.x = 213;
+				blocker1.left = 0;
+				blocker2.right = 0;
+				itemsGroup.visible = true;
+				ordersGroup.visible = false;
+				questionsGroup.visible = false;
+				
+			}
+			
+			protected function questionsBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				highlighterGrp.x = 0;
+				blocker1.left = 213;
+				blocker2.right = 0;
+				questionsGroup.visible = true;
+				ordersGroup.visible = false;
+				itemsGroup.visible = false;
+				
+			}
+			
+			protected function ordersBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				highlighterGrp.x = 426;
+				blocker1.left = 0;
+				blocker2.right = 213;
+				ordersGroup.visible = true;
+				questionsGroup.visible = false;
+				itemsGroup.visible = false;
+
+			}
+			
+			protected function walkerBtn_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(AddItemView);
+			}
+			
+			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+				GuideBtnSequenceWalkerBtn.play();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<parsley:Configure/>
+		
+		<s:Parallel id="GuideBtnSequenceWalkerBtn">
+			<s:Parallel target="{walkerBtn}" repeatCount="3" startDelay="12000">
+				<s:Fade alphaFrom="1" alphaTo="0.6" duration="600"/>
+				<s:Fade alphaFrom="0.6" alphaTo="1" duration="600" startDelay="600"/>
+			</s:Parallel>
+		</s:Parallel>	
+
+		
+	</fx:Declarations>
+	
+	<s:navigationContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="assets/icons/genericBackButton.png" click="button1_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:actionContent>
+		<s:Button skinClass="skins.PlainButtonSkin" icon="@Embed('assets/shareIcon.png')"/>
+	</s:actionContent>
+	
+	<s:Group width="100%" height="100%" top="-2">
+	<s:VGroup horizontalAlign="center" gap="0">
+			<s:VGroup horizontalAlign="center" gap="20">
+				<c:PlayerGroup/>
+			</s:VGroup>
+		<s:Group>
+			<s:Group>
+				<s:Button id="questionsBtn" skinClass="skins.VisitTabButtonSkin" icon="assets/icons/VaTab_icon.png"
+						  label="QUESTIONS" horizontalCenter="-213"
+						  click="questionsBtn_clickHandler(event)"/>
+				<s:Button id="itemsBtn" skinClass="skins.VisitTabButtonSkin" icon="assets/icons/VaTab_icon.png"
+						  label="ITEMS" horizontalCenter="0"
+						  click="itemsBtn_clickHandler(event)"/>
+				<s:Button id="ordersBtn" skinClass="skins.VisitTabButtonSkin" icon="assets/icons/VaTab_icon.png"
+						  label="ORDERS" horizontalCenter="213"
+						  click="ordersBtn_clickHandler(event)"/>
+			</s:Group>
+			<s:Group id="highlighterGrp" x="213" y="0">
+				<s:BitmapImage source="@Embed('assets/blueHighlighter.png')" top="-6"/>
+			</s:Group>
+			<s:BitmapImage id="blocker1" left="0" source="@Embed('assets/blackHighlighterTall.png')" top="0"/>
+			<s:BitmapImage id="blocker2" right="0" source="@Embed('assets/blackHighlighterTall.png')" top="0"/>
+		</s:Group>
+		<s:Group>
+			<s:BitmapImage source="@Embed('assets/visit/backgroundVABottom.png')"/>
+			<s:Group id="ordersGroup" visible="false">
+				<s:BitmapImage source="@Embed('assets/visit/ordersNotes.png')"/>
+			</s:Group>
+			<s:Group id="itemsGroup">
+				<s:Scroller height="500" horizontalScrollPolicy="off">
+					<s:VGroup gap="0">
+						<s:BitmapImage source="@Embed('assets/visit/itemsTopItem.png')"/>
+						<s:Button id="walkerBtn" skinClass="skins.PlainButtonSkin" icon="assets/visit/walkerItem.png"
+								  click="walkerBtn_clickHandler(event)"/>
+						<s:BitmapImage source="@Embed('assets/visit/tennisBallsItem.png')"/>
+						<s:BitmapImage source="@Embed('assets/visit/elbowBraceItem.png')"/>
+						<s:BitmapImage source="@Embed('assets/visit/elbowBraceItem.png')" visible="false"/>
+					</s:VGroup>
+				</s:Scroller>
+			</s:Group>
+			<s:Group id="questionsGroup" visible="false">
+				<s:BitmapImage source="@Embed('assets/visit/notesShort.png')"/>
+			</s:Group>
+		</s:Group>
+	</s:VGroup>
+	</s:Group>
+	
+<!--	<c:ItemsSliderComponent id="itemsSlider" horizontalCenter="0" bottom="-680"/>
+	
+	<s:Button id="shareBtn" label="Share" horizontalCenter="0" verticalCenter="200" visible="false"
+			  click="shareBtn_clickHandler(event)"/>-->
+	
+</s:View>
