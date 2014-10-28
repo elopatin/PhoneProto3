@@ -19,32 +19,40 @@
 			import views.MedicationsView;
 			import views.RegistryView;
 			
+			
+			// What is this here for?
 			static public function get CTScrollerComponent_1():CareTeamScrollerComponent
 			{
 				return WallCustomComponent.CTScrollerComponent_1;
 			}
 
+			
 			[Bindable]
 			private var titleName : String = new String;
+
 			
 			protected function loisBtn_clickHandler(event:MouseEvent):void
 			{
 				// currentState = "senior";
 				moveToSenior.play();
-				titleName = "LOIS";
+				titleName = "SHARING";
 				loisBtn.visible = false;
 				contactsBtn.visible = false;
+				plosLogo.visible = false;
 				wallBtnSlideRightForSenior.play();
+				logoFadeOut.play();
 			}
 			
 			protected function contactsBtn_clickHandler(event:MouseEvent):void
 			{
 				// currentState = 'careteam';
 				moveToCareteam.play();
-				titleName = "CARE TEAM";
+				titleName = "SETTINGS";
 				loisBtn.visible = false;
 				contactsBtn.visible = false;
+				plosLogo.visible = false;
 				wallBtnSlideLeftForCareTeam.play();
+				logoFadeOut.play();
 			}
 			
 			protected function wallBtn_clickHandler(event:MouseEvent):void
@@ -53,21 +61,25 @@
 				if (mothership.horizontalCenter == 550)
 				{
 					returnFromSenior.play();
-					titleName = "WALL";
+					titleName = "";
 					wallBtnSlideBackFromSenior.play();
+					logoFadeIn.play();
 					wallBtn.visible = false;
 					loisBtn.visible = true;
 					contactsBtn.visible = true;
+					plosLogo.visible = true;
 				}
 				
 				if (mothership.horizontalCenter == -550)
 				{
 					returnFromCareteam.play();
-					titleName = "WALL";
+					titleName = "";
 					wallBtnSlideBackFromCareTeam.play();
+					logoFadeIn.play();
 					wallBtn.visible = false;
 					loisBtn.visible = true;
 					contactsBtn.visible = true;
+					plosLogo.visible = true;
 				}
 			}
 			
@@ -77,9 +89,11 @@
 				if (event.offsetX == 1 && mothership.horizontalCenter == 0)
 				{
 					moveToSenior.play();
-					titleName = "LOIS";
+					logoFadeOut.play();
+					titleName = "SHARING";
 					loisBtn.visible = false;
 					contactsBtn.visible = false;
+					plosLogo.visible = false;
 					wallBtnSlideRightForSenior.play();
 				}
 				
@@ -87,9 +101,11 @@
 				if (event.offsetX == -1 && mothership.horizontalCenter == 550)
 				{
 					returnFromSenior.play();
-					titleName = "WALL";
+					logoFadeIn.play();
+					titleName = "";
 					loisBtn.visible = true;
 					contactsBtn.visible = true;
+					plosLogo.visible = true;
 					wallBtn.visible = false;
 					wallBtnSlideBackFromSenior.play();
 				}
@@ -98,9 +114,11 @@
 				if (event.offsetX == -1 && mothership.horizontalCenter == 0)
 				{
 					moveToCareteam.play();
-					titleName = "CARE TEAM";
+					logoFadeOut.play();
+					titleName = "SETTINGS";
 					loisBtn.visible = false;
 					contactsBtn.visible = false;
+					plosLogo.visible = false;
 					wallBtnSlideLeftForCareTeam.play();
 				}
 				
@@ -108,9 +126,11 @@
 				if (event.offsetX == 1 && mothership.horizontalCenter == -550)
 				{
 					returnFromCareteam.play();
-					titleName = "WALL";
+					logoFadeIn.play();
+					titleName = "";
 					loisBtn.visible = true;
 					contactsBtn.visible = true;
+					plosLogo.visible = true;
 					wallBtn.visible = false;
 					wallBtnSlideBackFromCareTeam.play();
 				}
@@ -123,7 +143,7 @@
 			{
 				if (mothership.horizontalCenter == 0)
 				{
-					titleName = "WALL";
+					titleName = "";
 				}
 				
 				insertTimer.addEventListener(TimerEvent.TIMER, handleInsertTimer);
@@ -231,6 +251,17 @@
 			</s:Parallel>-->
 		</s:Parallel>
 		
+		<s:Parallel id="logoFadeOut">
+			<s:Parallel target="{plosLogo}">
+				<s:Fade duration="400" alphaFrom="1" alphaTo="0"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="logoFadeIn">
+			<s:Parallel target="{plosLogo}">
+					<s:Fade duration="400" alphaFrom="0" alphaTo="1"/>
+			</s:Parallel>
+		</s:Parallel>
 		
 	</fx:Declarations>
 	
@@ -282,7 +313,7 @@
 		</s:VGroup>
 		
 		<s:Group>
-			<s:BitmapImage top="0" horizontalCenter="0" source="@Embed('/assets/iPhoneWallBackground.png')"/>
+			<!-- <s:BitmapImage top="0" horizontalCenter="0" source="@Embed('/assets/iPhoneWallBackground.png')"/> -->
 		<s:VGroup paddingTop="5">
 			<s:Scroller id="wallScroller" width="100%" height="900"
 						horizontalScrollPolicy="off" scrollSnappingMode="leadingEdge">
@@ -315,68 +346,19 @@
 		</s:Group>
 		
 		<c:CareTeamScrollerComponent id="CTScrollerComponent"/>
-<!--		<s:VGroup>
-			<s:Scroller id="careteamScroller" height="900"
-						horizontalScrollPolicy="off">
-				<s:VGroup width="100%" height="100%" horizontalAlign="right" gap="0">
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamTopTemp.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamAmber.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamBecky.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamCharles.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamOwen.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage source="@Embed('assets/careteamFloyd.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
-					</s:Group>
-					<s:Group width="100%">
-						<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
-					</s:Group>
-				</s:VGroup>	
-			</s:Scroller>
-		</s:VGroup>-->
 
 	</s:HGroup>
-	
-<!--	<s:Group id="secondaryNav" width="640" top="82" horizontalCenter="0">
-		<s:HGroup horizontalCenter="318" gap="1">
-			<s:HGroup gap="1" paddingTop="0">
-				<s:Button id="secondaryNavMedBtn" icon="assets/icons/BtnMedical2_icon.png"
-						  skinClass="skins.secondaryNavButtonSkin"
-						  click="secondaryNavMedBtn_clickHandler(event)"/>
-				<s:Button id="secondaryNavRegBtn" icon="assets/icons/BtnReg2_icon.png"
-						  skinClass="skins.secondaryNavButtonSkin"
-						  click="secondaryNavRegBtn_clickHandler(event)"/>
-				<s:Button id="secondaryNavAlertBtn" icon="assets/icons/BtnAlerts2_icon.png"
-						  skinClass="skins.secondaryNavButtonSkin"
-						  click="secondaryNavAlertBtn_clickHandler(event)"/>
-			</s:HGroup>
-			<s:Group>
-				<s:BitmapImage x="0" top="7" source="@Embed('assets/careteamOverhead.png')"/>
-			</s:Group>
-		</s:HGroup>
-	</s:Group>-->
 	
 	
 	<s:Group id="upperWallNav" width="640" top="0" horizontalCenter="0">
 			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
+			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
 			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/loisButtonLight.png"
 					  id="loisBtn" click="loisBtn_clickHandler(event)"/>
 			<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
 					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>
 			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/wallButtonLight.png"
 					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
-			<s:Label top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
+			<s:Label id="upperNavLabel" top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
 		</s:Group>
 	</s:Group>

@@ -27,7 +27,7 @@
 	</fx:Declarations>
 	
 		<s:Group>
-			<s:BitmapImage source="@Embed('assets/bottomNavLightNew.png')" horizontalCenter="0"/>
+			<s:BitmapImage source="@Embed('assets/bottomNavPlos.png')" horizontalCenter="0"/>
 			<s:HGroup horizontalCenter="0" gap="66" top="27">
 				<s:Button id="homeBtn" icon="assets/icons/homeNew_icon.png" 
 						  label="Home" skinClass="skins.menuBarButtonSkin"
@@ -38,7 +38,7 @@
 						  label="Follow-Up Care" skinClass="skins.menuBarButtonSkin"
 						  click="visitBtn_clickHandler(event)"/>
 				<s:Button id="emergencyBtn" icon="assets/icons/emergencyExclmIcon.png" 
-						  label="Emergency" skinClass="skins.menuBarButtonSkin"/>
+						  label="Article View" skinClass="skins.menuBarButtonSkin"/>
 			</s:HGroup>
 		</s:Group>
 	
