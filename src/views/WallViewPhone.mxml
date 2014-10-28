@@ -5,7 +5,7 @@
 		xmlns:c="components.*"
 		title="WallViewPhone"
 		actionBarVisible="false"
-		backgroundColor="#666f76"
+		backgroundColor="#586067"
 		destructionPolicy="never"
 		viewDeactivate="view1_viewDeactivateHandler(event)"
 		viewActivate="view1_viewActivateHandler(event)">

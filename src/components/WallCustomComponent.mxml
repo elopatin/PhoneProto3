@@ -37,7 +37,7 @@
 				moveToSenior.play();
 				titleName = "SHARING";
 				loisBtn.visible = false;
-				contactsBtn.visible = false;
+				// contactsBtn.visible = false;
 				plosLogo.visible = false;
 				wallBtnSlideRightForSenior.play();
 				logoFadeOut.play();
@@ -49,7 +49,7 @@
 				moveToCareteam.play();
 				titleName = "SETTINGS";
 				loisBtn.visible = false;
-				contactsBtn.visible = false;
+				// contactsBtn.visible = false;
 				plosLogo.visible = false;
 				wallBtnSlideLeftForCareTeam.play();
 				logoFadeOut.play();
@@ -66,7 +66,7 @@
 					logoFadeIn.play();
 					wallBtn.visible = false;
 					loisBtn.visible = true;
-					contactsBtn.visible = true;
+					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 				}
 				
@@ -78,7 +78,7 @@
 					logoFadeIn.play();
 					wallBtn.visible = false;
 					loisBtn.visible = true;
-					contactsBtn.visible = true;
+					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 				}
 			}
@@ -92,7 +92,7 @@
 					logoFadeOut.play();
 					titleName = "SHARING";
 					loisBtn.visible = false;
-					contactsBtn.visible = false;
+					// contactsBtn.visible = false;
 					plosLogo.visible = false;
 					wallBtnSlideRightForSenior.play();
 				}
@@ -104,7 +104,7 @@
 					logoFadeIn.play();
 					titleName = "";
 					loisBtn.visible = true;
-					contactsBtn.visible = true;
+					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 					wallBtn.visible = false;
 					wallBtnSlideBackFromSenior.play();
@@ -117,7 +117,7 @@
 					logoFadeOut.play();
 					titleName = "SETTINGS";
 					loisBtn.visible = false;
-					contactsBtn.visible = false;
+					// contactsBtn.visible = false;
 					plosLogo.visible = false;
 					wallBtnSlideLeftForCareTeam.play();
 				}
@@ -129,7 +129,7 @@
 					logoFadeIn.play();
 					titleName = "";
 					loisBtn.visible = true;
-					contactsBtn.visible = true;
+					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 					wallBtn.visible = false;
 					wallBtnSlideBackFromCareTeam.play();
@@ -277,7 +277,7 @@
 	<s:HGroup top="88" gap="0" id="mothership" horizontalCenter="0"
 			  gestureSwipe="mothership_gestureSwipeHandler(event)">
 
-		<s:VGroup id="seniorScroller">
+		<s:VGroup id="channelScroller">
 			<s:Scroller height="900"
 					horizontalScrollPolicy="off">
 			<s:VGroup width="100%" height="100%" horizontalAlign="left" gap="0">
@@ -315,27 +315,33 @@
 		<s:Group>
 			<!-- <s:BitmapImage top="0" horizontalCenter="0" source="@Embed('/assets/iPhoneWallBackground.png')"/> -->
 		<s:VGroup paddingTop="5">
-			<s:Scroller id="wallScroller" width="100%" height="900"
+			<s:Scroller id="articleScroller" width="100%" height="900"
 						horizontalScrollPolicy="off" scrollSnappingMode="leadingEdge">
-				<s:VGroup gap="20" horizontalAlign="center">
+				<s:VGroup horizontalAlign="center">
 					<s:VGroup>
 						<s:BitmapImage id="TopWallItem" includeInLayout="false" 
-									   source="@Embed('assets/entry3_640_00.png')"/>
+									   source="@Embed('assets/articles/bioArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/entry3_640_01.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/bioArticle2.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/entry3_640_02.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/bioArticle3.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/entry3_640_03.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/geneticsArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/entry3_640_04.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/entry3_640_05.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/pathogensArticle1.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/articles/pntdsArticle1.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/articles/review1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage alpha="0" source="@Embed('assets/entry3_640_04.png')"/>
@@ -352,11 +358,11 @@
 	
 	<s:Group id="upperWallNav" width="640" top="0" horizontalCenter="0">
 			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
-			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
-			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/loisButtonLight.png"
+			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoNoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
+			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
 					  id="loisBtn" click="loisBtn_clickHandler(event)"/>
-			<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
-					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>
+			<!--<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
+					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>-->
 			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/wallButtonLight.png"
 					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
 			<s:Label id="upperNavLabel" top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>

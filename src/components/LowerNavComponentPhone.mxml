@@ -28,17 +28,15 @@
 	
 		<s:Group>
 			<s:BitmapImage source="@Embed('assets/bottomNavPlos.png')" horizontalCenter="0"/>
-			<s:HGroup horizontalCenter="0" gap="66" top="27">
+			<s:HGroup horizontalCenter="0" gap="130" top="27">
 				<s:Button id="homeBtn" icon="assets/icons/homeNew_icon.png" 
-						  label="Home" skinClass="skins.menuBarButtonSkin"
+						  label="Circles" skinClass="skins.menuBarButtonSkin"
 						  click="homeBtn_clickHandler(event)"/>
-				<s:Button id="calBtn" icon="assets/icons/calNew_icon.png" 
-						  label="Calendar" skinClass="skins.menuBarButtonSkin"/>
 				<s:Button id="visitBtn" icon="assets/icons/visitNew_icon.png" 
-						  label="Follow-Up Care" skinClass="skins.menuBarButtonSkin"
+						  label="Channels" skinClass="skins.menuBarButtonSkin"
 						  click="visitBtn_clickHandler(event)"/>
 				<s:Button id="emergencyBtn" icon="assets/icons/emergencyExclmIcon.png" 
-						  label="Article View" skinClass="skins.menuBarButtonSkin"/>
+						  label="Article " skinClass="skins.menuBarButtonSkin"/>
 			</s:HGroup>
 		</s:Group>
 	

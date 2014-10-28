@@ -4,7 +4,7 @@
 			   xmlns:parsley="http://www.spicefactory.org/parsley"
 			   xmlns:c="components.*"
 			   applicationDPI="320"
-			   splashScreenImage="@Embed('/assets/splash_v.png')"
+			   splashScreenImage="@Embed('/assets/splashPlos.png')"
 			   applicationComplete="application1_applicationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
