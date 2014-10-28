@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" applicationDPI="320">
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:parsley="http://www.spicefactory.org/parsley"
+			   xmlns:c="components.*"
+			   applicationDPI="320"
+			   splashScreenImage="@Embed('/assets/splash_v.png')"
+			   applicationComplete="application1_applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+
+			// WallData for use by Parsley
+			import model.WallDataIPhone;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			// import org.osmf.events.TimeEvent;
+			
+			import views.AlertsView;
+			import views.MedicationsView;
+			import views.RegistryView;
+			import views.VisitHomeView;
+			import views.VisitPlayBackView;
+			
+			// Parsley setup
+			[Inject]
+			[Bindable]
+			public var wallData:WallDataIPhone;
+			
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				this.stage.setAspectRatio(StageAspectRatio.PORTRAIT);
+				this.stage.autoOrients = false;
+				
+				// Parsley: initial wallCounter value set
+				wallData.wallCounter = 1;
+				
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+		<parsley:ContextBuilder config="Config"/>
+		<parsley:Configure/>
+
 	</fx:Declarations>
+	
+	<fx:Style source="Main.css"/>
+	
+	<c:CustomViewNavigator id="navigator" firstView="views.WallViewPhone" width="100%" height="100%"/>
+	
 </s:Application>
