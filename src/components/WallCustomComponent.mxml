@@ -323,22 +323,22 @@
 									   source="@Embed('assets/articles/bioArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/bioArticle2.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/bioArticle3.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/geneticsArticle1.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/pntdsArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/articles/geneticsArticle1.png')"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/articles/bioArticle3.png')"/>
+					</s:VGroup>
+					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/pathogensArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/pntdsArticle1.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/bioArticle4.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/review1.png')"/>
