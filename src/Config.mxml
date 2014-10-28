@@ -8,6 +8,6 @@
 	-->   
 	
 	<fx:Declarations>
-		<model:WallDataIPhone/>   
+		<model:ArticleDataIPhone/>   
 	</fx:Declarations>
 </fx:Object>

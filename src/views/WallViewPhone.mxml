@@ -17,13 +17,13 @@
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
-			import model.WallDataIPhone;
+			import model.ArticleDataIPhone;
 			
 			import spark.events.ViewNavigatorEvent;	
 			
 			[Inject]
 			[Bindable]
-			public var wallData:WallDataIPhone;
+			public var articleData:ArticleDataIPhone;
 			
 /* 			static public function get wallCustComp_1():WallCustomComponent
 			{
@@ -39,7 +39,7 @@
 			{
 				wallCustComp.CTScrollerComponent.visible = true;
 				
-				wallData.wallCounter = 1;
+				articleData.articleCounter = 1;
 			}
 			
 		]]>

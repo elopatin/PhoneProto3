@@ -10,19 +10,19 @@
 		<![CDATA[
 			import mx.core.FlexGlobals;
 			
-			import model.WallDataIPhone;
+			import model.ArticleDataIPhone;
 			
 			import spark.events.ViewNavigatorEvent;
 			
 			[Inject]
 			[Bindable]
-			public var wallData:WallDataIPhone;
+			public var wallData:ArticleDataIPhone;
 			
 			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
 			{
 				FadeInBackground.play();
 				
-				wallData.wallCounter = 2;
+				wallData.articleCounter = 2;
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void

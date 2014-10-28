@@ -10,13 +10,11 @@
 		<![CDATA[
 
 			// WallData for use by Parsley
-			import model.WallDataIPhone;
+			import model.ArticleDataIPhone;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
-			
-			// import org.osmf.events.TimeEvent;
-			
+						
 			import views.AlertsView;
 			import views.MedicationsView;
 			import views.RegistryView;
@@ -26,7 +24,7 @@
 			// Parsley setup
 			[Inject]
 			[Bindable]
-			public var wallData:WallDataIPhone;
+			public var wallData:ArticleDataIPhone;
 			
 			protected function application1_applicationCompleteHandler(event:FlexEvent):void
 			{
@@ -34,12 +32,12 @@
 				this.stage.autoOrients = false;
 				
 				// Parsley: initial wallCounter value set
-				wallData.wallCounter = 1;
-				
+				wallData.articleCounter = 1;
 			}
 			
 		]]>
 	</fx:Script>
+	
 	<fx:Declarations>
 		
 		<parsley:ContextBuilder config="Config"/>

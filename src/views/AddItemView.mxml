@@ -3,12 +3,10 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		title="Drive Medical Walker"
 		viewActivate="view1_viewActivateHandler(event)">
-	
-	<!-- viewActivate="view1_viewActivateHandler(event)" -->
-	
+		
 	<fx:Script>
 		<![CDATA[
-			import model.WallDataIPhone;
+			import model.ArticleDataIPhone;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;

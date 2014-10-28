@@ -11,14 +11,14 @@
 		<![CDATA[
 			import mx.core.FlexGlobals;
 			
-			import model.WallDataIPhone;
+			import model.ArticleDataIPhone;
 			
 			import spark.effects.Move;
 			import spark.events.ViewNavigatorEvent;
 			
 			[Inject]
 			[Bindable]
-			public var wallData:WallDataIPhone;
+			public var wallData:ArticleDataIPhone;
 			
 /* 			public static function get itemsSlider_1():ItemsSliderComponent
 			{
@@ -27,11 +27,11 @@
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
-				if (wallData.wallCounter == 1)
+				if (wallData.articleCounter == 1)
 				{
 					navigator.popToFirstView();
 				}
-				if (wallData.wallCounter == 2)
+				if (wallData.articleCounter == 2)
 				{
 					navigator.popView();
 				}
