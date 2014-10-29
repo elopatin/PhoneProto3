@@ -5,7 +5,6 @@
 		xmlns:c="components.*"
 		title="WallViewPhone"
 		actionBarVisible="false"
-		backgroundColor="#586067"
 		destructionPolicy="never"
 		viewDeactivate="view1_viewDeactivateHandler(event)"
 		viewActivate="view1_viewActivateHandler(event)">
@@ -51,8 +50,13 @@
 	
 	</fx:Declarations>
 	
+	<s:BitmapImage id="backgroundImage" source="@Embed('/assets/homeViewBackground.png')"
+				   horizontalCenter="0" top="0"/>
+	
 	<c:WallCustomComponent id="wallCustComp" top="0" horizontalCenter="0"/>
 	
 	<c:LowerNavComponentPhone id="lowerNav" width="100%" bottom="0"/>
+	
+
 
 </s:View>

@@ -18,6 +18,7 @@
 			import views.AlertsView;
 			import views.MedicationsView;
 			import views.RegistryView;
+			import views.VisitHomeView;
 			
 			
 			// What is this here for?
@@ -35,8 +36,8 @@
 			{
 				// currentState = "senior";
 				moveToSenior.play();
-				titleName = "SHARING";
-				loisBtn.visible = false;
+				titleName = "SETTINGS";
+				settingsBtn.visible = false;
 				// contactsBtn.visible = false;
 				plosLogo.visible = false;
 				wallBtnSlideRightForSenior.play();
@@ -48,7 +49,7 @@
 				// currentState = 'careteam';
 				moveToCareteam.play();
 				titleName = "SETTINGS";
-				loisBtn.visible = false;
+				settingsBtn.visible = false;
 				// contactsBtn.visible = false;
 				plosLogo.visible = false;
 				wallBtnSlideLeftForCareTeam.play();
@@ -65,7 +66,7 @@
 					wallBtnSlideBackFromSenior.play();
 					logoFadeIn.play();
 					wallBtn.visible = false;
-					loisBtn.visible = true;
+					settingsBtn.visible = true;
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 				}
@@ -77,7 +78,7 @@
 					wallBtnSlideBackFromCareTeam.play();
 					logoFadeIn.play();
 					wallBtn.visible = false;
-					loisBtn.visible = true;
+					settingsBtn.visible = true;
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 				}
@@ -90,8 +91,8 @@
 				{
 					moveToSenior.play();
 					logoFadeOut.play();
-					titleName = "SHARING";
-					loisBtn.visible = false;
+					titleName = "SETTINGS";
+					settingsBtn.visible = false;
 					// contactsBtn.visible = false;
 					plosLogo.visible = false;
 					wallBtnSlideRightForSenior.play();
@@ -103,7 +104,7 @@
 					returnFromSenior.play();
 					logoFadeIn.play();
 					titleName = "";
-					loisBtn.visible = true;
+					settingsBtn.visible = true;
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 					wallBtn.visible = false;
@@ -116,7 +117,7 @@
 					moveToCareteam.play();
 					logoFadeOut.play();
 					titleName = "SETTINGS";
-					loisBtn.visible = false;
+					settingsBtn.visible = false;
 					// contactsBtn.visible = false;
 					plosLogo.visible = false;
 					wallBtnSlideLeftForCareTeam.play();
@@ -128,7 +129,7 @@
 					returnFromCareteam.play();
 					logoFadeIn.play();
 					titleName = "";
-					loisBtn.visible = true;
+					settingsBtn.visible = true;
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 					wallBtn.visible = false;
@@ -174,6 +175,11 @@
 				FlexGlobals.topLevelApplication.navigator.pushView(AlertsView);
 			}
 			
+			
+			protected function TopWallItem_clickHandler(event:MouseEvent):void
+			{
+				FlexGlobals.topLevelApplication.navigator.pushView(VisitHomeView);
+			}
 			
 		]]>
 	</fx:Script>
@@ -319,8 +325,9 @@
 						horizontalScrollPolicy="off" scrollSnappingMode="leadingEdge">
 				<s:VGroup horizontalAlign="center">
 					<s:VGroup>
-						<s:BitmapImage id="TopWallItem" includeInLayout="false" 
-									   source="@Embed('assets/articles/bioArticle1.png')"/>
+						<s:Button id="TopWallItem" includeInLayout="false" skinClass="skins.PlainButtonSkin"
+								  icon="assets/articles/bioArticle1.png" click="TopWallItem_clickHandler(event)"
+								  visible="false"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
@@ -341,7 +348,7 @@
 						<s:BitmapImage source="@Embed('assets/articles/bioArticle4.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage alpha="0" source="@Embed('assets/entry3_640_04.png')"/>
+						<s:BitmapImage alpha="0" source="@Embed('assets/articles/bioArticle4.png')"/>
 					</s:VGroup>
 				</s:VGroup>
 			</s:Scroller>
@@ -357,10 +364,10 @@
 			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
 			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoNoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
 			<s:Button top="0" horizontalCenter="-234" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
-					  id="loisBtn" click="loisBtn_clickHandler(event)"/>
+					  id="settingsBtn" click="loisBtn_clickHandler(event)"/>
 			<!--<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
 					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>-->
-			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/wallButtonLight.png"
+			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
 					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
 			<s:Label id="upperNavLabel" top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
 		</s:Group>

@@ -29,13 +29,13 @@
 		<s:Group>
 			<s:BitmapImage source="@Embed('assets/bottomNavPlos.png')" horizontalCenter="0"/>
 			<s:HGroup horizontalCenter="0" gap="130" top="27">
-				<s:Button id="homeBtn" icon="assets/icons/homeNew_icon.png" 
+				<s:Button id="homeBtn" icon="assets/icons/circlesIcon.png" 
 						  label="Circles" skinClass="skins.menuBarButtonSkin"
 						  click="homeBtn_clickHandler(event)"/>
-				<s:Button id="visitBtn" icon="assets/icons/visitNew_icon.png" 
+				<s:Button id="visitBtn" icon="assets/icons/tunerIcon.png" 
 						  label="Channels" skinClass="skins.menuBarButtonSkin"
 						  click="visitBtn_clickHandler(event)"/>
-				<s:Button id="emergencyBtn" icon="assets/icons/emergencyExclmIcon.png" 
+				<s:Button id="emergencyBtn" icon="assets/icons/articleIcon.png" 
 						  label="Article " skinClass="skins.menuBarButtonSkin"/>
 			</s:HGroup>
 		</s:Group>
