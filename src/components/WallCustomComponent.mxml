@@ -86,7 +86,7 @@
 			
 			protected function mothership_gestureSwipeHandler(event:TransformGestureEvent):void
 			{
-				// Swipe was to the right from wall, to senior
+				// Swipe was to the right from wall, to settings
 				if (event.offsetX == 1 && mothership.horizontalCenter == 0)
 				{
 					moveToSenior.play();
@@ -98,7 +98,7 @@
 					wallBtnSlideRightForSenior.play();
 				}
 				
-				// Swipe was to the left from senior, return to wall
+				// Swipe was to the left from settings, return to wall
 				if (event.offsetX == -1 && mothership.horizontalCenter == 550)
 				{
 					returnFromSenior.play();
@@ -326,8 +326,11 @@
 				<s:VGroup horizontalAlign="center">
 					<s:VGroup>
 						<s:Button id="TopWallItem" includeInLayout="false" skinClass="skins.PlainButtonSkin"
-								  icon="assets/articles/bioArticle1.png" click="TopWallItem_clickHandler(event)"
+								  icon="assets/articles/bioArticle1a.png" click="TopWallItem_clickHandler(event)"
 								  visible="false"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:BitmapImage source="@Embed('assets/articles/oneArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
@@ -340,15 +343,6 @@
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/bioArticle3.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/pathogensArticle1.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/bioArticle4.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage alpha="0" source="@Embed('assets/articles/bioArticle4.png')"/>
 					</s:VGroup>
 				</s:VGroup>
 			</s:Scroller>
