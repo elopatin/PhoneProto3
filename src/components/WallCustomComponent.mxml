@@ -323,10 +323,10 @@
 									   source="@Embed('assets/articles/bioArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/pntdsArticle1.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
+						<s:BitmapImage source="@Embed('assets/articles/pntdsArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/geneticsArticle1.png')"/>
@@ -339,9 +339,6 @@
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/bioArticle4.png')"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/review1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage alpha="0" source="@Embed('assets/entry3_640_04.png')"/>
@@ -359,7 +356,7 @@
 	<s:Group id="upperWallNav" width="640" top="0" horizontalCenter="0">
 			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
 			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoNoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
-			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
+			<s:Button top="0" horizontalCenter="-234" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
 					  id="loisBtn" click="loisBtn_clickHandler(event)"/>
 			<!--<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
 					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>-->
