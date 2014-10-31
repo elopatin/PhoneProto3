@@ -19,4 +19,10 @@
 		<s:Button skinClass="skins.PlainButtonSkin" icon="assets/icons/genericBackButton.png" click="button1_clickHandler(event)"/>
 	</s:navigationContent>
 	
+	<s:Scroller height="900">
+		<s:VGroup gap="0">
+			<s:BitmapImage source="@Embed('assets/circleSetupFPO.png')"/>
+		</s:VGroup>
+	</s:Scroller>
+	
 </s:View>
