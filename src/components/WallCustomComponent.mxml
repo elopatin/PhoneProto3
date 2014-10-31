@@ -32,29 +32,28 @@
 			private var titleName : String = new String;
 
 			
-			protected function loisBtn_clickHandler(event:MouseEvent):void
+			protected function toChannelsBtn_clickHandler(event:MouseEvent):void
 			{
 				// currentState = "senior";
 				moveToSenior.play();
-				titleName = "VIEW SETTINGS";
+				titleName = "CHANNELS";
 				settingsBtn.visible = false;
-				// contactsBtn.visible = false;
 				plosLogo.visible = false;
 				wallBtnSlideRightForSenior.play();
-				logoFadeOut.play();
+				channelAddBtnFadeIn.play();
 			}
 			
-			protected function contactsBtn_clickHandler(event:MouseEvent):void
+/*			protected function contactsBtn_clickHandler(event:MouseEvent):void
 			{
 				// currentState = 'careteam';
 				moveToCareteam.play();
-				titleName = "VIEW SETTINGS";
+				titleName = "CHANNELS";
 				settingsBtn.visible = false;
-				// contactsBtn.visible = false;
-				plosLogo.visible = false;
+				// plosLogo.visible = false;
 				wallBtnSlideLeftForCareTeam.play();
 				logoFadeOut.play();
-			}
+				channelAddBtn.visible = true;
+			}*/
 			
 			protected function wallBtn_clickHandler(event:MouseEvent):void
 			{
@@ -67,21 +66,22 @@
 					logoFadeIn.play();
 					wallBtn.visible = false;
 					settingsBtn.visible = true;
+					channelAddBtnFadeOut.play();
 					// contactsBtn.visible = true;
-					plosLogo.visible = true;
+					// plosLogo.visible = true;
 				}
 				
-				if (mothership.horizontalCenter == -550)
+/*				if (mothership.horizontalCenter == -550)
 				{
 					returnFromCareteam.play();
 					titleName = "";
 					wallBtnSlideBackFromCareTeam.play();
 					logoFadeIn.play();
 					wallBtn.visible = false;
-					settingsBtn.visible = true;
+					settingsBtn.visible = false;
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
-				}
+				}*/
 			}
 			
 			protected function mothership_gestureSwipeHandler(event:TransformGestureEvent):void
@@ -91,10 +91,11 @@
 				{
 					moveToSenior.play();
 					logoFadeOut.play();
-					titleName = "SETTINGS";
+					titleName = "CHANNELS";
 					settingsBtn.visible = false;
 					// contactsBtn.visible = false;
 					plosLogo.visible = false;
+					channelAddBtnFadeIn.play();
 					wallBtnSlideRightForSenior.play();
 				}
 				
@@ -108,23 +109,24 @@
 					// contactsBtn.visible = true;
 					plosLogo.visible = true;
 					wallBtn.visible = false;
+					channelAddBtnFadeOut.play();
 					wallBtnSlideBackFromSenior.play();
 				}
 				
 				// Swipe was to the left from wall, to care team
-				if (event.offsetX == -1 && mothership.horizontalCenter == 0)
+/*				if (event.offsetX == -1 && mothership.horizontalCenter == 0)
 				{
 					moveToCareteam.play();
 					logoFadeOut.play();
-					titleName = "SETTINGS";
+					titleName = "";
 					settingsBtn.visible = false;
 					// contactsBtn.visible = false;
 					plosLogo.visible = false;
 					wallBtnSlideLeftForCareTeam.play();
-				}
+				}*/
 				
 				// Swipe was to the right from care team, return to wall
-				if (event.offsetX == 1 && mothership.horizontalCenter == -550)
+/*				if (event.offsetX == 1 && mothership.horizontalCenter == -550)
 				{
 					returnFromCareteam.play();
 					logoFadeIn.play();
@@ -134,7 +136,7 @@
 					plosLogo.visible = true;
 					wallBtn.visible = false;
 					wallBtnSlideBackFromCareTeam.play();
-				}
+				}*/
 
 			}
 			
@@ -179,6 +181,61 @@
 			protected function TopWallItem_clickHandler(event:MouseEvent):void
 			{
 				FlexGlobals.topLevelApplication.navigator.pushView(VisitHomeView);
+			}
+			
+			protected function plosOneChannel_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosBiologyChannelBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosMedicineChannelBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosCompBioBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosGeneticsBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosPathogensBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function plosPNTDChannel_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function channelAddBtn_clickHandler(event:MouseEvent):void
+			{
+				if (channelAdditionScroller.bottom == -870)
+				{
+					raiseChannelAdditionScroller.play();
+				}
+				if (channelAdditionScroller.bottom == 5)
+				{
+					lowerChannelAdditionScroller.play();
+				}
+				
 			}
 			
 		]]>
@@ -259,7 +316,7 @@
 		
 		<s:Parallel id="logoFadeOut">
 			<s:Parallel target="{plosLogo}">
-				<s:Fade duration="400" alphaFrom="1" alphaTo="0"/>
+				<s:Fade duration="100" alphaFrom="1" alphaTo="0"/>
 			</s:Parallel>
 		</s:Parallel>
 		
@@ -267,6 +324,30 @@
 			<s:Parallel target="{plosLogo}">
 					<s:Fade duration="400" alphaFrom="0" alphaTo="1"/>
 			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="channelAddBtnFadeOut">
+			<s:Parallel target="{channelAddBtn}">
+				<s:Fade duration="100" alphaFrom="1" alphaTo="0"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="channelAddBtnFadeIn">
+			<s:Parallel target="{channelAddBtn}">
+				<s:Fade duration="400" alphaFrom="0" alphaTo="1"/>
+			</s:Parallel>
+		</s:Parallel>
+		
+		<s:Parallel id="raiseChannelAdditionScroller">
+			<s:Animate target="{channelAdditionScroller}" duration="250">
+				<s:SimpleMotionPath property="bottom" valueFrom="-870" valueTo="5"/>
+			</s:Animate>
+		</s:Parallel>
+		
+		<s:Parallel id="lowerChannelAdditionScroller">
+			<s:Animate target="{channelAdditionScroller}" duration="250">
+				<s:SimpleMotionPath property="bottom" valueFrom="5" valueTo="-870"/>
+			</s:Animate>
 		</s:Parallel>
 		
 	</fx:Declarations>
@@ -284,28 +365,60 @@
 		
 		<s:VGroup id="channelScroller">			
 			<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
-			<s:VGroup horizontalAlign="left" gap="0">
-				<s:VGroup width="100%">
-					<s:Button id="firstItem" icon="assets/channels/channelItemBlank.png" 
-							  skinClass="skins.PlainButtonSkin" includeInLayout="true"/>
-				</s:VGroup>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorRegistryNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorApptsNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorLegalNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorLegalNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
-				</s:Group>
-			</s:VGroup>	
-		</s:Scroller>
+				<s:VGroup gap="0">
+					<s:VGroup>
+						<s:Button id="plosOneChannelBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosOneChannel.png"
+								  click="plosOneChannel_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosBiologyChannelBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosBiologyChannel.png"
+								  click="plosBiologyChannelBtn_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosMedicineChannelBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosMedicineChannel.png"
+								  click="plosMedicineChannelBtn_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosCompBioBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosCompBioChannel.png"
+								  click="plosCompBioBtn_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosGeneticsBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosGeneticsChannel.png"
+								  click="plosGeneticsBtn_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosPathogensBtn" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosPathogensChannel.png"
+								  click="plosPathogensBtn_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Button id="plosPNTDChannel" skinClass="skins.PlainButtonSkin" 
+								  icon="assets/channels/plosPTNDChannel.png"
+								  click="plosPNTDChannel_clickHandler(event)"
+								  visible="true"/>
+					</s:VGroup>
+					<s:VGroup width="100%">
+						<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+					</s:VGroup>
+					<s:VGroup width="100%">
+						<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+					</s:VGroup>
+					<s:VGroup width="100%">
+						<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+					</s:VGroup>
+				</s:VGroup>	
+			</s:Scroller>
 		</s:VGroup>
 		
 		<s:Group>
@@ -347,10 +460,10 @@
 	<s:Group id="upperWallNav" width="640" top="0" horizontalCenter="0">
 			<s:BitmapImage source="@Embed('assets/topNavBackgroundLight.png')"/>
 			<s:BitmapImage id="plosLogo" source="@Embed('assets/plosLogoNoType.png')" horizontalCenter="-6" verticalCenter="-4"/>
+			<s:Button top="0" horizontalCenter="-240" skinClass="skins.menuBarButtonSkin" icon="assets/channels/addChannelButtonSml.png"
+					  alpha="0" id="channelAddBtn" click="channelAddBtn_clickHandler(event)"/>
 			<s:Button top="0" horizontalCenter="-234" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
-					  id="settingsBtn" click="loisBtn_clickHandler(event)"/>
-			<!--<s:Button top="0" horizontalCenter="240" skinClass="skins.menuBarButtonSkin" icon="assets/contactsButtonLight.png"
-					  id="contactsBtn" click="contactsBtn_clickHandler(event)"/>-->
+					  id="settingsBtn" click="toChannelsBtn_clickHandler(event)"/>
 			<s:Button top="0" horizontalCenter="0" skinClass="skins.menuBarButtonSkin" icon="assets/settingsScrub.png"
 					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
 			<s:Label id="upperNavLabel" top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
@@ -359,6 +472,10 @@
 	<s:VGroup id="channelAdditionScroller" horizontalCenter="-70" bottom="-870">
 		<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
 			<s:VGroup gap="0">
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
 				<s:Group>
 					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
 								   width="100%"/>
