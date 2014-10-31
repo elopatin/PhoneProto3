@@ -19,15 +19,15 @@
 				const state:String = currentState;
 				if ( state == 'off' ) {
 					currentState='on';
-					wallData.articleCounter = 1;
-					trace("article counter set to 1");
+					wallData.articleCounter = 5;
+					trace("article counter set to 5");
 				}
 
 				
 				if ( state == 'on' ) {
 					currentState='off';
-					wallData.articleCounter = 2;
-					trace("article counter set to 2");
+					wallData.articleCounter = 6;
+					trace("article counter set to 6");
 				}				
 
 			}

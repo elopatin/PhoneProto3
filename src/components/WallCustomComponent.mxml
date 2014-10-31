@@ -22,6 +22,7 @@
 			import views.MedicationsView;
 			import views.RegistryView;
 			import views.VisitHomeView;
+			import views.articleView;
 			
 			// Parsley setup
 			[Inject]
@@ -188,7 +189,7 @@
 			
 			protected function TopWallItem_clickHandler(event:MouseEvent):void
 			{
-				FlexGlobals.topLevelApplication.navigator.pushView(VisitHomeView);
+				FlexGlobals.topLevelApplication.navigator.pushView(articleView);
 			}
 			
 			protected function plosOneChannel_clickHandler(event:MouseEvent):void
@@ -420,11 +421,11 @@
 				<s:VGroup horizontalAlign="center">
 					<s:VGroup>
 						<s:Button id="TopWallItem" skinClass="skins.PlainButtonSkin"
-								  icon="assets/articles/bioArticle1a.png" click="TopWallItem_clickHandler(event)"
+								  icon="assets/articles/oneArticle1.png" click="TopWallItem_clickHandler(event)"
 								  includeInLayout="false" visible="false"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage id="oneArticle" source="@Embed('assets/articles/oneArticle1.png')"/>
+						<s:BitmapImage id="oneArticle" source="@Embed('assets/articles/bioArticle1a.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
@@ -463,6 +464,14 @@
 	<s:VGroup id="channelAdditionScroller" horizontalCenter="-70" bottom="-870">
 		<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
 			<s:VGroup gap="0">
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/typeSearchBox.png')"
+								   width="100%"/>
+				</s:Group>
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
 				<s:Group>
 					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
 								   width="100%"/>

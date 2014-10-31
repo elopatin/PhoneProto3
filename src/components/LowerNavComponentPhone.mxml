@@ -7,15 +7,23 @@
 			import mx.core.FlexGlobals;
 			
 			import views.VisitHomeView;
+			import views.articleView;
+			import views.channelSetupView;
+			import views.circlesView;
 			
-			protected function visitBtn_clickHandler(event:MouseEvent):void
+			protected function channelBtn_clickHandler(event:MouseEvent):void
 			{
-				FlexGlobals.topLevelApplication.navigator.pushView(VisitHomeView);
+				FlexGlobals.topLevelApplication.navigator.pushView(channelSetupView);
 			}
 			
-			protected function homeBtn_clickHandler(event:MouseEvent):void
+			protected function circlesBtn_clickHandler(event:MouseEvent):void
 			{
-				FlexGlobals.topLevelApplication.navigator.popToFirstView();
+				FlexGlobals.topLevelApplication.navigator.pushView(circlesView);
+			}
+			
+			protected function articleBtn_clickHandler(event:MouseEvent):void
+			{
+				FlexGlobals.topLevelApplication.navigator.pushView(articleView);
 			}
 			
 		]]>
@@ -31,12 +39,13 @@
 			<s:HGroup horizontalCenter="0" gap="130" top="27">
 				<s:Button id="homeBtn" icon="assets/icons/circlesIcon.png" 
 						  label="Circles" skinClass="skins.menuBarButtonSkin"
-						  click="homeBtn_clickHandler(event)"/>
-				<s:Button id="visitBtn" icon="assets/icons/tunerIcon.png" 
+						  click="circlesBtn_clickHandler(event)"/>
+				<s:Button id="channelBtn" icon="assets/icons/tunerIcon.png" 
 						  label="Channels" skinClass="skins.menuBarButtonSkin"
-						  click="visitBtn_clickHandler(event)"/>
+						  click="channelBtn_clickHandler(event)"/>
 				<s:Button id="articleBtn" icon="assets/icons/articleIcon.png" 
-						  label="Article " skinClass="skins.menuBarButtonSkin"/>
+						  label="Article " skinClass="skins.menuBarButtonSkin"
+						  click="articleBtn_clickHandler(event)"/>
 			</s:HGroup>
 		</s:Group>
 	
