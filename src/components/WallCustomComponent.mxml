@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:parsley="http://www.spicefactory.org/parsley"
 		 xmlns:c="components.*"
 		 width="100%" height="100%"
 		 creationComplete="group1_creationCompleteHandler(event)">
@@ -15,10 +16,17 @@
 			import spark.components.Label;
 			import spark.events.ViewNavigatorEvent;
 			
+			import model.ArticleDataIPhone;
+			
 			import views.AlertsView;
 			import views.MedicationsView;
 			import views.RegistryView;
 			import views.VisitHomeView;
+			
+			// Parsley setup
+			[Inject]
+			[Bindable]
+			public var wallData:ArticleDataIPhone;
 			
 			
 			// What is this here for?
@@ -238,11 +246,26 @@
 				
 			}
 			
+			protected function plosOneChannelToggle_clickHandler(event:MouseEvent):void
+			{
+				if (TopWallItem.visible == true)
+				{
+					TopWallItem.includeInLayout = false;
+					TopWallItem.visible = false;
+				}
+				if (TopWallItem.visible == false)
+				{
+					TopWallItem.includeInLayout = true;
+					TopWallItem.visible = true;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
 	
 	<fx:Declarations>
+		<parsley:Configure/>
 		
 		<s:Parallel id="TopItemInsert">
 			<s:Parallel target="{TopWallItem}">
@@ -366,51 +389,19 @@
 		<s:VGroup id="channelScroller">			
 			<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
 				<s:VGroup gap="0">
-					<s:VGroup>
-						<s:Button id="plosOneChannelBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosOneChannel.png"
-								  click="plosOneChannel_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosBiologyChannelBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosBiologyChannel.png"
-								  click="plosBiologyChannelBtn_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosMedicineChannelBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosMedicineChannel.png"
-								  click="plosMedicineChannelBtn_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosCompBioBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosCompBioChannel.png"
-								  click="plosCompBioBtn_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosGeneticsBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosGeneticsChannel.png"
-								  click="plosGeneticsBtn_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosPathogensBtn" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosPathogensChannel.png"
-								  click="plosPathogensBtn_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup>
-						<s:Button id="plosPNTDChannel" skinClass="skins.PlainButtonSkin" 
-								  icon="assets/channels/plosPTNDChannel.png"
-								  click="plosPNTDChannel_clickHandler(event)"
-								  visible="true"/>
-					</s:VGroup>
-					<s:VGroup width="100%">
-						<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
-					</s:VGroup>
+
+					<c:poneChannelToggle id="plosOneChannelToggle"/>
+					
+					<c:pbioChannelToggle id="plosBioChannelToggle"/>
+					
+					<c:pmedChannelToggle id="plosMedicineChannelToggle"/>
+										
+					<c:pgeneticsChannelToggle id="plosGeneticsChannelToggle"/>
+					
+					<c:ppathChannelToggle id="plosPathogensChannelToggle"/>
+					
+					<c:pcompBioChannelToggle id="plosCompBioChannelToggle"/>
+					
 					<s:VGroup width="100%">
 						<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
 					</s:VGroup>
@@ -428,12 +419,12 @@
 						horizontalScrollPolicy="off" scrollSnappingMode="leadingEdge">
 				<s:VGroup horizontalAlign="center">
 					<s:VGroup>
-						<s:Button id="TopWallItem" includeInLayout="false" skinClass="skins.PlainButtonSkin"
+						<s:Button id="TopWallItem" skinClass="skins.PlainButtonSkin"
 								  icon="assets/articles/bioArticle1a.png" click="TopWallItem_clickHandler(event)"
-								  visible="false"/>
+								  includeInLayout="false" visible="false"/>
 					</s:VGroup>
 					<s:VGroup>
-						<s:BitmapImage source="@Embed('assets/articles/oneArticle1.png')"/>
+						<s:BitmapImage id="oneArticle" source="@Embed('assets/articles/oneArticle1.png')"/>
 					</s:VGroup>
 					<s:VGroup>
 						<s:BitmapImage source="@Embed('assets/articles/inTheNews1.png')"/>
