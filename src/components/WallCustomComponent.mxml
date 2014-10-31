@@ -36,7 +36,7 @@
 			{
 				// currentState = "senior";
 				moveToSenior.play();
-				titleName = "SETTINGS";
+				titleName = "VIEW SETTINGS";
 				settingsBtn.visible = false;
 				// contactsBtn.visible = false;
 				plosLogo.visible = false;
@@ -48,7 +48,7 @@
 			{
 				// currentState = 'careteam';
 				moveToCareteam.play();
-				titleName = "SETTINGS";
+				titleName = "VIEW SETTINGS";
 				settingsBtn.visible = false;
 				// contactsBtn.visible = false;
 				plosLogo.visible = false;
@@ -279,26 +279,16 @@
 	-->
 	
 	
-	
 	<s:HGroup top="88" gap="0" id="mothership" horizontalCenter="0"
 			  gestureSwipe="mothership_gestureSwipeHandler(event)">
-
-		<s:VGroup id="channelScroller">
-			<s:Scroller height="900"
-					horizontalScrollPolicy="off">
-			<s:VGroup width="100%" height="100%" horizontalAlign="left" gap="0">
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorHeaderBlank.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorLockItem.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorHeaderBlank.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/senior/seniorPHRNew.png')"/>
-				</s:Group>
+		
+		<s:VGroup id="channelScroller">			
+			<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
+			<s:VGroup horizontalAlign="left" gap="0">
+				<s:VGroup width="100%">
+					<s:Button id="firstItem" icon="assets/channels/channelItemBlank.png" 
+							  skinClass="skins.PlainButtonSkin" includeInLayout="true"/>
+				</s:VGroup>
 				<s:Group width="100%">
 					<s:BitmapImage source="@Embed('assets/senior/seniorRegistryNew.png')"/>
 				</s:Group>
@@ -309,7 +299,7 @@
 					<s:BitmapImage source="@Embed('assets/senior/seniorLegalNew.png')"/>
 				</s:Group>
 				<s:Group width="100%">
-					<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
+					<s:BitmapImage source="@Embed('assets/senior/seniorLegalNew.png')"/>
 				</s:Group>
 				<s:Group width="100%">
 					<s:BitmapImage alpha="0" source="@Embed('assets/seniorTempOption.png')"/>
@@ -365,4 +355,30 @@
 					  alpha="0" id="wallBtn" click="wallBtn_clickHandler(event)"/>
 			<s:Label id="upperNavLabel" top="28" horizontalCenter="0" text="{titleName}" fontSize="26" fontFamily="HelveticaNeue-Medium" color="#485365"/>
 		</s:Group>
+	
+	<s:VGroup id="channelAdditionScroller" horizontalCenter="-70" bottom="-870">
+		<s:Scroller height="900" width="100%" horizontalScrollPolicy="off">
+			<s:VGroup gap="0">
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
+				<s:Group>
+					<s:BitmapImage source="@Embed('assets/channels/channelItemBlank.png')"
+								   width="100%"/>
+				</s:Group>
+			</s:VGroup>
+		</s:Scroller>
+	</s:VGroup>
+	
 	</s:Group>
+
+

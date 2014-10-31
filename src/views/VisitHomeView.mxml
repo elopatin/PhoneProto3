@@ -14,6 +14,7 @@
 			
 			import spark.events.ViewNavigatorEvent;
 			
+			// Parsley data model injectionx
 			[Inject]
 			[Bindable]
 			public var wallData:ArticleDataIPhone;
@@ -21,7 +22,6 @@
 			protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
 			{
 				FadeInBackground.play();
-				
 				wallData.articleCounter = 2;
 			}
 			

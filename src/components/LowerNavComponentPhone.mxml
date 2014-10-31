@@ -35,7 +35,7 @@
 				<s:Button id="visitBtn" icon="assets/icons/tunerIcon.png" 
 						  label="Channels" skinClass="skins.menuBarButtonSkin"
 						  click="visitBtn_clickHandler(event)"/>
-				<s:Button id="emergencyBtn" icon="assets/icons/articleIcon.png" 
+				<s:Button id="articleBtn" icon="assets/icons/articleIcon.png" 
 						  label="Article " skinClass="skins.menuBarButtonSkin"/>
 			</s:HGroup>
 		</s:Group>

@@ -4,11 +4,7 @@
 		 width="100%" height="100%">
 	
 	
-	<fx:Declarations>
-
-		
-	
-	</fx:Declarations>
+	<fx:Declarations/>
 	
 	
 	<s:VGroup>
@@ -17,33 +13,6 @@
 			<s:VGroup width="100%" height="100%" horizontalAlign="right" gap="0">
 				<s:Group width="100%">
 					<s:BitmapImage source="@Embed('assets/careteam/patients.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/ctLoisAmberNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/medicalTeam.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/ctAliceNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/ctCharlesNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/careteamNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/ctOwenNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage source="@Embed('assets/careteam/ctFloydNew.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
-				</s:Group>
-				<s:Group width="100%">
-					<s:BitmapImage alpha="0" source="@Embed('assets/careteamTemp.png')"/>
 				</s:Group>
 			</s:VGroup>	
 		</s:Scroller>
