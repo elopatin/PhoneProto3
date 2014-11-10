@@ -12,14 +12,8 @@
 			// WallData for use by Parsley
 			import model.ArticleDataIPhone;
 			
-			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 						
-			import views.AlertsView;
-			import views.MedicationsView;
-			import views.RegistryView;
-			import views.VisitHomeView;
-			import views.VisitPlayBackView;
 			
 			// Parsley setup
 			[Inject]
